@@ -38,9 +38,6 @@ def calculaDistancia(local1, local2):
     distancia = math.sqrt(dx ** 2 + dy ** 2)
     return distancia
 
-# Parâmetros do problema
-
-
 # Matriz de custos
 def criaMatrizCustos(cidades):
   mat_custos = []
@@ -60,16 +57,6 @@ mat_custos = criaMatrizCustos(qtd_pontos)
 custos = custoEntreCidades(mat_custos,qtd_pontos)
 # %time caminhoDeValorMenor(qtd_pontos,custos,origem,destino)
 
-qtd_pontos = 4
-origem = int(input("Digite o valor onde o caixeiro irá iniciar: "))
-destino= int(input("Digite o valor da cidade onde o caixeiro que terminar: "))
-
-mat_custos = criaMatrizCustos(qtd_pontos)
-custos = custoEntreCidades(mat_custos,qtd_pontos)
-for caminhos in imprimecaminhos(qtd_pontos,custos):
-  print(caminhos)
-print("melhor caminho possivel "+str(caminhoDeValorMenor(qtd_pontos,custos,origem,destino)))
-
 def custoEntreCidades(mat_custos,qtd_pontos):
   # Índices dos pontos de origem e destino
   origens = [i + 1 for i in range(qtd_pontos)]
@@ -82,36 +69,19 @@ def custoEntreCidades(mat_custos,qtd_pontos):
   for i, origem in enumerate(origens):
       for j, destino in enumerate(destinos):
           custos[origem, destino] = mat_custos[i][j]
-nt(input("Digite a quantidade de cidades que o caixeiro irá percorrer: "))
   return custos
 
+#cria os caminhos e retorna o caminho menos custoso e seu valor
 def caminhoDeValorMenor(qtd_pontos,custos, origem, destino):
   caminhos = []
   cidades =[]
-
-  #cria uma lista de cidades baseadas no total de pontos
   for i in range(1,qtd_pontos+1):
     cidades.append(i)
 
 
   #criar caminhos possiveis (permutações)
   for p in itertools.permutations(cidades):
-    caminhos.append(p)valormenor = 0
-  indice = 0
-  for i in range(lprint(en(caminhosencontrados)):for caminhos in imprimecaminhos(qtd_pontos,custos):
-  print(caminhos)
-print("melhor caminho possivel "+)
-    if(i==0):
-      valormenor=custocam[caminhosencontrados[i]]
-      indice = i
-
-    elif(valormenor > custocam[caminhosencontrados[i]]):
-      valormenor = custocam[caminhosencontrados[i]]
-      indice= i
-  
-  return valormenor,caminhosencontrados[i]
-
-
+    caminhos.append(p)
 
   #identificar o valor de custo de cada caminho
   custocam={}  
@@ -120,51 +90,12 @@ print("melhor caminho possivel "+)
     for i in range (len(c)-1):
       valorcusto =valorcusto+ custos[c[i], c[i+1]]
     custocam[c]=valorcusto
+
+  #seta uma origem e destino
   
 
 
-
-#identifica os caminhos que tem a mesma origem e destino
-valormenor = 0
-  indice = 0valormenor = 0
-  indice = 0
-  for i in range(len(caminhosencontrados)):
-
-    if(i==0):valormenor = 0
-  indice = 0
-  for i in range(len(caminhosencontrados)):
-    if(i==0):
-      valormenor=custocam[caminhosencontrados[i]]
-      indice = i
-
-    elif(valormenor > custocam[caminhosencontrados[i]]):
-
-
-      valormenor = custocam[caminhosencontrados[i]]
-      indice= i
-  
-  return valormenor,caminhosencontrados[i]
-
-      valormenor=custocam[caminhosencontrados[i]]
-      indice = i
-
-    elif(valormenor > custocam[caminhosencontrados[i]]):
-      valormenor = custocam[caminhosencontrados[i]]
-      indice= i
-  
-  return valormenor,caminhosencontrados[i]
-
-  for i in range(len(caminhosencontrados)):
-    if(i==0):
-      valormenor=custocam[caminhosencontrados[i]]
-      indice = i
-
-    elif(valormenor > custocam[caminhosencontrados[i]]):
-      valormenor = custocam[caminhosencontrados[i]]
-      indice= i
-  
-  return valormenor,caminhosencontrados[i]
-
+  #identifica os caminhos que tem a mesma origem e destino
   caminhosencontrados=[]
   for caminho in caminhos:
     if(caminho[0]==origem and caminho[len(caminho)-1]==destino):
@@ -173,15 +104,12 @@ valormenor = 0
 
   #comparar o valor menor de cada caminho de mesma origem e destino
   valormenor = 0
-  indice = 0
   for i in range(len(caminhosencontrados)):
     if(i==0):
       valormenor=custocam[caminhosencontrados[i]]
-      indice = i
 
     elif(valormenor > custocam[caminhosencontrados[i]]):
       valormenor = custocam[caminhosencontrados[i]]
-      indice= i
   
   return valormenor,caminhosencontrados[i]
 
@@ -206,3 +134,13 @@ def imprimecaminhos(qtd_pontos,custos):
     custocam[c]=valorcusto
 
   return caminhos, valorcusto
+
+qtd_pontos = 4
+origem = int(input("Digite o valor onde o caixeiro irá iniciar: "))
+destino= int(input("Digite o valor da cidade onde o caixeiro que terminar: "))
+
+mat_custos = criaMatrizCustos(qtd_pontos)
+custos = custoEntreCidades(mat_custos,qtd_pontos)
+for caminhos in imprimecaminhos(qtd_pontos,custos):
+  print(caminhos)
+print("melhor caminho possivel "+str(caminhoDeValorMenor(qtd_pontos,custos,origem,destino)))
